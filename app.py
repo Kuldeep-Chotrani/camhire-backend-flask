@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, send_from_directory, abort
 from flask_restful import Api
 from flask_jwt import JWT
@@ -34,4 +36,4 @@ def get_pdf(pdf_name):
         abort(404)
 
 api.add_resource(UserRegister,'/register')
-app.run(port= 5001, debug=True)
+app.run()
