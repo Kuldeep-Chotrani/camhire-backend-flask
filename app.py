@@ -36,4 +36,5 @@ def get_pdf(pdf_name):
         abort(404)
 
 api.add_resource(UserRegister,'/register')
-app.run()
+port = os.environ.get("PORT",5000)
+app.run(debug=False, host="0.0.0.0",port=port)
