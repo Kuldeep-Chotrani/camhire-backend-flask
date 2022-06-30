@@ -11,9 +11,11 @@ from resources.store import Store,StoreList
 from db import db
 app = Flask(__name__)
 api = Api(app)
+DOWNLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + '/pdf/'
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQlALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['data_of_photographers'] = "/home/kuldeepchotrani/Desktop/git_project/sample-app/updated/pdf"
+app.config['data_of_photographers'] = DOWNLOAD_FOLDER
 app.secret_key = "kuldeep"
 jwt = JWT(app,authenticate,identity)
 items = []
