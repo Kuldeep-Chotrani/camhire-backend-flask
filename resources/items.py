@@ -43,11 +43,15 @@ class Item(Resource):
         item = ItemModel.find_by_name(name)
         data = Item.parser.parse_args()
         if item:
-            item = ItemModel(name,**data)
-        else:
             item.price = data['price']
-        item.save_to_db()
-        return item.json()
+            item.store_id = data['store_id']
+        else:
+            item = ItemModel(name, **data)
+        try:
+            item.save_to_db()
+        except():
+            return {"message": "error occured in database"}, 500
+        return item.json(), 201
 class ItemList(Resource):
     def get(self):
         return {'item':[item.json() for item in ItemModel .query.all()]}
